@@ -1,0 +1,22 @@
+= MemberList
+
+== DESCRIPTION:
+
+MemberList is a web service that is able to manage list of member who attended an event very easily.
+
+== FEATURES:
+
+== SYNOPSIS:
+
+== REQUIREMENTS:
+
+* sinatra
+* haml
+" uuid
+
+Install:
+
+  sudo gem install sinatra haml uuid
+
+== TODO:
+
