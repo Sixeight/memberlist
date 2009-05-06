@@ -2,7 +2,7 @@
 
 == DESCRIPTION:
 
-MemberList is a web service that is able to manage list of member who attended an event very easily.
+MemberList is a web service that is able to manage list of members who attended an event very easily.
 
 == FEATURES:
 
@@ -12,11 +12,13 @@ MemberList is a web service that is able to manage list of member who attended a
 
 * sinatra
 * haml
-" uuid
+* uuid
 
 Install:
 
   sudo gem install sinatra haml uuid
 
 == TODO:
+
+* There are a lot of todos
 
