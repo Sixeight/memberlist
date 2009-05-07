@@ -1,4 +1,7 @@
 
+# Cucumber
+require 'cucumber/formatter/unicode'
+
 # Sinatra
 app_file = File.join(File.dirname(__FILE__), *%w[.. .. app.rb])
 require app_file
