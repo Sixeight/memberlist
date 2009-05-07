@@ -1,0 +1,9 @@
+
+#newevnet
+  %form{ :action => '/event/init', :method => 'get' }
+    %label{ :for => 'event_name' }
+      %h2 イベントの名前
+    %input#event_name{ :name => 'event_name' }
+    %br
+    %input{ :type => 'submit', :value => '新規作成' }
+

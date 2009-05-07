@@ -1,0 +1,15 @@
+
+%h2== #{@event.name}の参加者一覧
+%table#list
+  %tr
+    - @event.member_info.each_with_index do |column, idx|
+      %th<
+        %label{ :for => "info_#{idx}" }= column
+    %td
+  %tr
+    - @event.member_info.size.times do |i|
+      %td<
+        %input{ :id => "info_#{i}", :name => "info_#{i}" }
+    %td.submit +
+  = haml :members, :layout => false
+

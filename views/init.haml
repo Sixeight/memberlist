@@ -1,0 +1,12 @@
+
+%form{ :action => '/event/create', :method => 'post' }
+  %input{ :type => 'hidden', :name => '_method', :value => 'put' }
+  %input#event_name{ :type => 'hidden', :name => 'event_name', :value => event_name }
+  %label{ :for => 'event_name' } イベント名
+  %h2= event_name
+  %label{ :for => 'infos' } 一覧表に必要な情報
+  %br
+  %input#infos{ :name => 'infos' }
+  %br
+  %input{ :type => 'submit', :value => '確定' }
+

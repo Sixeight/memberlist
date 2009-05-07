@@ -1,0 +1,7 @@
+
+- @event.members.each do |member|
+  %tr.member
+    - member.data.each do |data|
+      %td>= data
+    %td.delete{ :id => "member_#{member.id}" } x
+
