@@ -39,7 +39,10 @@ class Event < Sequel::Model
 
   alias :orig_info :member_info
   def member_info
-    self.orig_info.split(/[\s　]/)
+    self.orig_info.split(/\|/).
+      map(&:strip).
+      map {|i| (i =~ /\A　*([^　]*)　*\z/) ? $1 : i }.
+      reject(&:empty?)
   end
 end
 

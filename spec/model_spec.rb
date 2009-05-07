@@ -17,27 +17,60 @@ describe Event do
 
   it 'has uuid as primay key' do
     class DummyEvent < Event; end
-    DummyEvent.class_eval <<-EOS
-      @@uuid = Object.new
-      def @@uuid.generate; 'uuid' end
-    EOS
+    DummyEvent.class_eval  do
+      def before_save
+        super
+        self.id = 'uuid'
+      end
+    end
 
     event = DummyEvent.create(@parameters)
     event.id.should == 'uuid'
   end
 
-  it 'has column names which is member info' do
+  it 'has member info' do
     event = Event.create(
       :name => 'event',
-      :member_info => 'name phonenumber')
+      :member_info => 'name | phonenumber')
     event.member_info.should == ['name', 'phonenumber']
   end
 
-  it 'cant set member_info in Japanese' do
+  it 'can set member info in Japanese' do
     event = Event.create(
       :name => 'event',
-      :member_info => '名前 電話番号　住所')
+      :member_info => '名前 | 電話番号 | 住所')
     event.member_info.should == ['名前', '電話番号', '住所']
+  end
+
+  it 'can set more example of member info' do
+    result = [
+      %w[hoge piyo fuga],
+      %w[ほげ ぴよ ふが],
+      ['hoge piyo', 'fuga']
+    ]
+    [
+      'hoge |    piyo | fuga',
+      'hoge|piyo | fuga',
+      'hoge|piyo | fuga',
+      'hoge| piyo |fuga',
+      'hoge |piyo | fuga',
+      'hoge|piyo|fuga',
+      'hoge || piyo | fuga',
+      'hoge piyo | fuga',
+      'ほげ |    ぴよ | ふが',
+      'ほげ|ぴよ | ふが',
+      'ほげ|ぴよ | ふが',
+      'ほげ| ぴよ |ふが',
+      'ほげ |ぴよ | ふが',
+      'ほげ|ぴよ|ふが',
+      'ほげ　|　ぴよ　|　ふが',
+      'ほげ　|　ぴよ　|　ふが',
+    ].each do |info|
+      event = Event.create(
+        :name => 'event',
+        :member_info => info)
+      result.should be_include(event.member_info)
+    end
   end
 
   it 'must set updated_at automaticaly' do
