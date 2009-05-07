@@ -1,6 +1,6 @@
 
 require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../model'
+require File.dirname(__FILE__) + '/../model' unless defined? Event
 
 describe Event do
   before do
